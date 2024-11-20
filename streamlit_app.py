@@ -25,8 +25,8 @@ def BusquedaProvidencia (palabra):
     client = MongoClient("mongodb+srv://jgonzalezl8:Sephiroth1@bigdata2024.zpsjf.mongodb.net/?retryWrites=true&w=majority&appName=BigData2024")
     db = client["BigData2023"]
     coleccion = db["sentencias"]
-    for documento in coleccion.find({"providencia": {"$regex": palabra, "$options": "i"}}):
-        print(documento)
+    for i in coleccion.find({"providencia": {"$regex": palabra, "$options": "i"}}):
+        documento  = coleccion.find()
     return documento
 
 def BusquedaTipoProvidencia (palabra):
@@ -58,6 +58,14 @@ def main():
     st.write(
         " [docs.streamlit.io](https://docs.streamlit.io/)."
     )
+
+    st.subheader("SENTENCIAS: Busqueda por Nombre de providencia")
+    nombre_providencia = st.text_input("Ingrese el nombre de la providencia")
+    st.dataframe(
+        BusquedaProvidencia(nombre_providencia)
+    )
+
+
     
     st.subheader("SENTENCIAS: Busqueda dinamica")
     st.dataframe(
