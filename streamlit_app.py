@@ -1,6 +1,7 @@
 
 import pip
 import pymongo
+import pandas as pd
 from pymongo import MongoClient
 import streamlit as st
 st.set_page_config(page_title="Sentencias Automate")
@@ -20,32 +21,39 @@ def ConexionSqlSimilitudesDB():
     similitudes = coleccion.find()
     return similitudes
 
-def BusquedaProvidencia (palabra):
-    from pymongo import MongoClient
+def BusquedaProvidencia(palabra):
+    
+    # Conexión al cliente MongoDB
     client = MongoClient("mongodb+srv://jgonzalezl8:Sephiroth1@bigdata2024.zpsjf.mongodb.net/?retryWrites=true&w=majority&appName=BigData2024")
     db = client["BigData2023"]
     coleccion = db["sentencias"]
-    for i in coleccion.find({"providencia": {"$regex": palabra, "$options": "i"}}):
-        documento  = coleccion.find()
-    return documento
+    
+    # Consulta a la base de datos
+    resultados = list(coleccion.find({"providencia": {"$regex": palabra, "$options": "i"}}))
+    
+    # Convertir a DataFrame
+    if resultados:
+        df = pd.DataFrame(resultados)
+    else:
+        df = pd.DataFrame()  # DataFrame vacío si no hay resultados 
+    return df
 
-def BusquedaTipoProvidencia (palabra):
-    from pymongo import MongoClient
+def BusquedaTipoProvidencia(palabra):
+    
+    # Conexión al cliente MongoDB
     client = MongoClient("mongodb+srv://jgonzalezl8:Sephiroth1@bigdata2024.zpsjf.mongodb.net/?retryWrites=true&w=majority&appName=BigData2024")
     db = client["BigData2023"]
     coleccion = db["sentencias"]
-    for documento in coleccion.find({"tipo": {"$regex": palabra, "$options": "i"}}):
-        print(documento)
-    return documento
-
-def BusquedaAnio (palabra):
-    from pymongo import MongoClient
-    client = MongoClient("mongodb+srv://jgonzalezl8:Sephiroth1@bigdata2024.zpsjf.mongodb.net/?retryWrites=true&w=majority&appName=BigData2024")
-    db = client["BigData2023"]
-    coleccion = db["sentencias"]
-    for documento in coleccion.find({"anio": {"$regex": palabra, "$options": "i"}}):
-        print(documento)
-    return documento
+    
+    # Consulta a la base de datos
+    resultados = list(coleccion.find({"tipo": {"$regex": palabra, "$options": "i"}}))
+    
+    # Convertir a DataFrame
+    if resultados:
+        df = pd.DataFrame(resultados)
+    else:
+        df = pd.DataFrame()  # DataFrame vacío si no hay resultados 
+    return df
 
 def main(): 
 
@@ -60,9 +68,15 @@ def main():
     )
 
     st.subheader("SENTENCIAS: Busqueda por Nombre de providencia")
-    nombre_providencia = st.text_input("Ingrese el nombre de la providencia")
+    nombre_providencia = st.text_input("Ingrese el nombre de la providencia", key = 1)
     st.dataframe(
         BusquedaProvidencia(nombre_providencia)
+    )
+
+    st.subheader("SENTENCIAS: Busqueda por tipo de providencia")
+    tipo_providencia = st.text_input("Ingrese el tipo de la providencia", key = 2)
+    st.dataframe(
+        BusquedaTipoProvidencia(tipo_providencia)
     )
 
 
