@@ -16,7 +16,7 @@ def ConexionSqlSentenciasDB():
 
 def ConexionSqlSimilitudesDB():
     client = MongoClient("mongodb+srv://jgonzalezl8:Sephiroth1@bigdata2024.zpsjf.mongodb.net/?retryWrites=true&w=majority&appName=BigData2024")
-    db = client["Simulitud"]
+    db = client["BigData2023"]
     coleccion = db["Similitudes"]
     similitudes = coleccion.find()
     return similitudes
