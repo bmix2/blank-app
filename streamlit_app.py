@@ -55,6 +55,23 @@ def BusquedaTipoProvidencia(palabra):
         df = pd.DataFrame()  # DataFrame vacío si no hay resultados 
     return df
 
+def BusquedaAnioProvidencia(palabra):
+    
+    # Conexión al cliente MongoDB
+    client = MongoClient("mongodb+srv://jgonzalezl8:Sephiroth1@bigdata2024.zpsjf.mongodb.net/?retryWrites=true&w=majority&appName=BigData2024")
+    db = client["BigData2023"]
+    coleccion = db["sentencias"]
+    
+    # Consulta a la base de datos
+    resultados = list(coleccion.find({"anio": {"$regex": palabra, "$options": "i"}}))
+    
+    # Convertir a DataFrame
+    if resultados:
+        df = pd.DataFrame(resultados)
+    else:
+        df = pd.DataFrame()  # DataFrame vacío si no hay resultados 
+    return df
+
 def main(): 
 
     #CONSULTANDO LA BASE DE DATOS DE SENTENCIA
@@ -78,10 +95,22 @@ def main():
     st.subheader("SENTENCIAS: Busqueda por tipo de providencia")
     opcionTipo = st.selectbox('Seleccione el tipo de Sentencia', 
         ['Auto','Tutela','Constitucionalidad']
-
     )
+
     st.dataframe(
         BusquedaTipoProvidencia(opcionTipo)
+    )
+
+    st.subheader("SENTENCIAS: Busqueda por año")
+    opcionAnio = st.slider('Seleccione el año de la Sentencia', 
+        min_value= 1990,
+        max_value =2050,
+        value=2000,
+        step=1
+    )
+    
+    st.dataframe(
+        BusquedaAnioProvidencia(opcionAnio)
     )
 
 
