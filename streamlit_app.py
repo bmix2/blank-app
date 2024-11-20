@@ -4,7 +4,7 @@ import pymongo
 import pandas as pd
 from pymongo import MongoClient
 import streamlit as st
-st.set_page_config(page_title="Sentencias Automate")
+st.set_page_config(page_title="Sentencias Automate",)
 
 
 def ConexionSqlSentenciasDB():
@@ -83,7 +83,7 @@ def main():
     st.write(
         " [docs.streamlit.io](https://docs.streamlit.io/)."
     )
-
+    st.sidebar.header("Menu Principial")
 
     st.subheader("SENTENCIAS: Busqueda por Nombre de providencia")
     nombre_providencia = st.text_input("Ingrese el nombre de la providencia", key = 1)
