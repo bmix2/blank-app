@@ -108,9 +108,8 @@ def main():
         value=2000,
         step=1
     )
-    
     st.dataframe(
-        BusquedaAnioProvidencia(opcionAnio)
+        BusquedaAnioProvidencia(""+(str(opcionAnio)))
     )
 
 
