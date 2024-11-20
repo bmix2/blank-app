@@ -67,16 +67,21 @@ def main():
         " [docs.streamlit.io](https://docs.streamlit.io/)."
     )
 
+
     st.subheader("SENTENCIAS: Busqueda por Nombre de providencia")
     nombre_providencia = st.text_input("Ingrese el nombre de la providencia", key = 1)
     st.dataframe(
         BusquedaProvidencia(nombre_providencia)
     )
 
+    
     st.subheader("SENTENCIAS: Busqueda por tipo de providencia")
-    tipo_providencia = st.text_input("Ingrese el tipo de la providencia", key = 2)
+    opcionTipo = st.selectbox('Seleccione el tipo de Sentencia', 
+        ['Auto','Tutela','Constitucionalidad']
+
+    )
     st.dataframe(
-        BusquedaTipoProvidencia(tipo_providencia)
+        BusquedaTipoProvidencia(opcionTipo)
     )
 
 
