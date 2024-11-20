@@ -109,7 +109,7 @@ def main():
         step=1
     )
     st.dataframe(
-        BusquedaAnioProvidencia(""+(str(opcionAnio)))
+        BusquedaAnioProvidencia(""+(str(opcionAnio))), width=400
     )
 
 
