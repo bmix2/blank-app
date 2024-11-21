@@ -173,7 +173,7 @@ def main():
     opcionAnio = st.slider('Seleccione el año de la Sentencia', 
         min_value= 1990,
         max_value =2050,
-        value=2000,
+        value=2008,
         step=1
     )
     st.dataframe(
@@ -192,7 +192,7 @@ def main():
     #    sentencias
     #)
 
-    st.subheader("SIMILITUDES: Busqueda dinamica")
+    #st.subheader("SIMILITUDES: Busqueda dinamica")
     #st.dataframe(
         #similitudes2
     #)
