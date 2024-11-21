@@ -140,10 +140,10 @@ def BusquedaSimilitudProvidencia(palabra):
 def main(): 
 
     #CONSULTANDO LA BASE DE DATOS DE SENTENCIA
-    sentencias = ConexionSqlSentenciasDB() #cargando todos los registros de sentencia
+    #sentencias = ConexionSqlSentenciasDB() #cargando todos los registros de sentencia
     
     #CONSULTANDO LA BASE DE DATOS DE SIMILITUDES
-    similitudes = ConexionSqlSimilitudesDB() #cargando todos los registros de similitudes
+    #similitudes = ConexionSqlSimilitudesDB() #cargando todos los registros de similitudes
 
     #CONSULTANDO LA BASE DE DATOS DE SIMILITUDES2
     #similitudes2 = ConexionSqlSimilitudes2DB() #cargando todos los registros de similitudes
@@ -155,6 +155,8 @@ def main():
         " [docs.streamlit.io](https://docs.streamlit.io/)."
     )
     st.sidebar.header("Menu Principial")
+
+
 
     st.subheader("SENTENCIAS: Busqueda por Nombre de providencia")
     nombre_providencia = st.text_input("Ingrese el nombre de la providencia", key = 1)
@@ -180,25 +182,17 @@ def main():
         step=1
     )
     st.dataframe(
-        BusquedaAnioProvidencia(""+(str(opcionAnio))), width=400
+        BusquedaAnioProvidencia(""+(str(opcionAnio))), width=800
     )
 
 
     st.subheader("SENTENCIAS: Busqueda por texto de providencia")
-    nombre_providencia = st.text_input("Ingrese el texto que desea buscar en la providencia", key = 2)
+    nombre_providencia = st.text_area("Ingrese el texto que desea buscar en la providencia", key = 2, height=400)
     st.dataframe(
         BusquedaTextoProvidencia(nombre_providencia)
     )
     
-    #st.subheader("SENTENCIAS: Busqueda dinamica")
-    #st.dataframe(
-    #    sentencias
-    #)
 
-    #st.subheader("SIMILITUDES: Busqueda dinamica")
-    #st.dataframe(
-        #similitudes2
-    #)
     
     st.subheader("SIMILITUDES: Busqueda x Providencia (Base de datos JSON suministrada)")
     nombre_providencia2 = st.text_input("Ingrese nombre de la providencia para mostrar sus similitudes", key = 3)
