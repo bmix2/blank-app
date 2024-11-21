@@ -151,19 +151,20 @@ def main():
 
     
     menu =["INICIO","SENTENCIAS(Busqueda por Nombre)","SENTENCIAS(Busqueda por Tipo)","SENTENCIAS(Busqueda por Año)","SENTENCIAS(Busqueda por Texto)","SIMILITUDES (BASE SUMINISTRADA)","SIMILITUDES (BASE PROPIA)"]
-    st.sidebar.header("SetenceApp 🧑‍⚖️", divider="yellow")
+    st.sidebar.header("SetenceApp 🧑‍⚖️", divider="gray")
     eleccion = st.sidebar.selectbox("MENU PRINCIPAL",menu)
     if eleccion =="INICIO":
         img = Image.open("Captura.PNG")
         st.image(img,use_column_width="True")
+
         col1, col2, col3 = st.columns([1, 2, 1])
 
         with col2:
             st.title("🧑‍⚖️")
-            st.title("SentenceApp - Sentencias a tu alcance.")
-            st.write(
-                " <- Nuestro Menú "
-            )
+        st.title("SentenceApp - Sentencias a tu alcance.")
+        st.write(
+            " <- Nuestro Menú "
+        )
 
 
     elif eleccion == "SENTENCIAS(Busqueda por Nombre)":
