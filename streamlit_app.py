@@ -21,6 +21,13 @@ def ConexionSqlSimilitudesDB():
     similitudes = coleccion.find()
     return similitudes
 
+def ConexionSqlSimilitudes2DB():
+    client = MongoClient("mongodb+srv://jgonzalezl8:Sephiroth1@bigdata2024.zpsjf.mongodb.net/?retryWrites=true&w=majority&appName=BigData2024")
+    db = client["BigData2023"]
+    coleccion = db["Similitudes2"]
+    similitudes = coleccion.find()
+    return similitudes
+
 def BusquedaProvidencia(palabra):
     
     # Conexión al cliente MongoDB
@@ -89,12 +96,33 @@ def BusquedaTextoProvidencia(palabra):
         df = pd.DataFrame()  # DataFrame vacío si no hay resultados 
     return df
 
+def BusquedaSimilitudProvidencia(palabra):
+    
+    # Conexión al cliente MongoDB
+    client = MongoClient("mongodb+srv://jgonzalezl8:Sephiroth1@bigdata2024.zpsjf.mongodb.net/?retryWrites=true&w=majority&appName=BigData2024")
+    db = client["BigData2023"]
+    coleccion = db["similitudes2"]
+    
+    # Consulta a la base de datos
+    resultados = list(coleccion.find({"similitud": {"$regex": palabra, "$options": "i"}}))
+    
+    # Convertir a DataFrame
+    if resultados:
+        df = pd.DataFrame(resultados)
+    else:
+        df = pd.DataFrame()  # DataFrame vacío si no hay resultados 
+    return df
+
 def main(): 
 
     #CONSULTANDO LA BASE DE DATOS DE SENTENCIA
     sentencias = ConexionSqlSentenciasDB() #cargando todos los registros de sentencia
-     #CONSULTANDO LA BASE DE DATOS DE SIMILITUDES
+    
+    #CONSULTANDO LA BASE DE DATOS DE SIMILITUDES
     similitudes = ConexionSqlSimilitudesDB() #cargando todos los registros de similitudes
+
+    #CONSULTANDO LA BASE DE DATOS DE SIMILITUDES2
+    similitudes2 = ConexionSqlSimilitudes2DB() #cargando todos los registros de similitudes
 
     st.title("🎈 My new app")
     st.write(
@@ -146,5 +174,13 @@ def main():
         similitudes
     )
     
+    
+    
+    st.subheader("SIMILITUDES: Busqueda x Providencia")
+    nombre_providencia2 = st.text_input("Ingrese el texto que desea buscar en la providencia", key = 2)
+    st.dataframe(
+        BusquedaSimilitudProvidencia(nombre_providencia2)
+    )
+
 main()
  
