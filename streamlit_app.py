@@ -154,7 +154,7 @@ def main():
     st.sidebar.header("SetenceApp ⚖️", divider="gray")
     eleccion = st.sidebar.selectbox("MENU PRINCIPAL",menu)
     if eleccion =="INICIO":
-        img = Image.open("Captura.PNG")
+        img = Image.open("Portada2.jpeg")
         st.image(img,use_column_width="True")
 
         col1, col2, col3 = st.columns([1, 1, 1])
