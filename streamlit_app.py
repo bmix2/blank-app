@@ -152,7 +152,7 @@ def main():
     
     menu =["INICIO","SENTENCIAS(Busqueda por Nombre)","SENTENCIAS(Busqueda por Tipo)","SENTENCIAS(Busqueda por Año)","SENTENCIAS(Busqueda por Texto)","SIMILITUDES (BASE SUMINISTRADA)","SIMILITUDES (BASE PROPIA)"]
     st.sidebar.header("SetenceApp ⚖️", divider="gray")
-    eleccion = st.sidebar.selectbox("MENU PRINCIPAL",menu)
+    eleccion = st.sidebar.selectbox("MENU PRINCIPAL ⚖️",menu)
     if eleccion =="INICIO":
         
         #Instrucciones para centrar un elemento usando columnas
