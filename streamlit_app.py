@@ -177,7 +177,7 @@ def main():
     
     
     st.subheader("SIMILITUDES: Busqueda x Providencia")
-    nombre_providencia2 = st.text_input("Ingrese el texto que desea buscar en la providencia", key = 2)
+    nombre_providencia2 = st.text_input("Ingrese el texto que desea buscar en la providencia", key = 3)
     st.dataframe(
         BusquedaSimilitudProvidencia(nombre_providencia2)
     )
