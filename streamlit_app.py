@@ -157,7 +157,7 @@ def main():
         img = Image.open("Captura.PNG")
         st.image(img,use_column_width="True")
 
-        col1, col2, col3 = st.columns([1, 2, 1])
+        col1, col2, col3 = st.columns([1, 3, 1])
 
         with col2:
             st.title("🧑‍⚖️")
