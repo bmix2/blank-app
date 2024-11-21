@@ -148,7 +148,7 @@ def main():
     #CONSULTANDO LA BASE DE DATOS DE SIMILITUDES2
     #similitudes2 = ConexionSqlSimilitudes2DB() #cargando todos los registros de similitudes
 
-    img = Image.open("Captura.png")
+    img = Image.open("/workspaces/blank-app/Captura.PNG")
     st.image(img,use_column_width="True")
     st.title("🎈 My new app")
     st.write(
