@@ -164,10 +164,10 @@ def main():
         BusquedaTextoProvidencia(nombre_providencia)
     )
     
-    st.subheader("SENTENCIAS: Busqueda dinamica")
-    st.dataframe(
-        sentencias
-    )
+    #st.subheader("SENTENCIAS: Busqueda dinamica")
+    #st.dataframe(
+    #    sentencias
+    #)
 
     st.subheader("SIMILITUDES: Busqueda dinamica")
     st.dataframe(
