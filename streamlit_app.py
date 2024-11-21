@@ -2,6 +2,7 @@
 import pip
 import pymongo
 import pandas as pd
+from PIL import Image
 from pymongo import MongoClient
 import streamlit as st
 st.set_page_config(page_title="Sentencias Automate",initial_sidebar_state="expanded")
@@ -147,6 +148,8 @@ def main():
     #CONSULTANDO LA BASE DE DATOS DE SIMILITUDES2
     #similitudes2 = ConexionSqlSimilitudes2DB() #cargando todos los registros de similitudes
 
+    img = Image.open("Captura.png")
+    st.image(img,use_column_width="True")
     st.title("🎈 My new app")
     st.write(
         " [docs.streamlit.io](https://docs.streamlit.io/)."
