@@ -101,7 +101,7 @@ def BusquedaSimilitudProvidencia(palabra):
     # Conexión al cliente MongoDB
     client = MongoClient("mongodb+srv://jgonzalezl8:Sephiroth1@bigdata2024.zpsjf.mongodb.net/?retryWrites=true&w=majority&appName=BigData2024")
     db = client["BigData2023"]
-    coleccion = db["similitudes2"]
+    coleccion = db["Similitudes2"]
     
     # Consulta a la base de datos
     resultados = list(coleccion.find({"providencia1": {"$regex": palabra, "$options": "i"}}))
