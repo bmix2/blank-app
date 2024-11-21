@@ -122,7 +122,7 @@ def main():
     similitudes = ConexionSqlSimilitudesDB() #cargando todos los registros de similitudes
 
     #CONSULTANDO LA BASE DE DATOS DE SIMILITUDES2
-    similitudes2 = ConexionSqlSimilitudes2DB() #cargando todos los registros de similitudes
+    #similitudes2 = ConexionSqlSimilitudes2DB() #cargando todos los registros de similitudes
 
     st.title("🎈 My new app")
     st.write(
@@ -170,9 +170,9 @@ def main():
     #)
 
     st.subheader("SIMILITUDES: Busqueda dinamica")
-    st.dataframe(
-        similitudes2
-    )
+    #st.dataframe(
+        #similitudes2
+    #)
     
     
 
