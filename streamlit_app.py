@@ -151,7 +151,7 @@ def main():
 
     
     menu =["INICIO","SENTENCIAS(Busqueda por Nombre)","SENTENCIAS(Busqueda por Tipo)","SENTENCIAS(Busqueda por Año)","SENTENCIAS(Busqueda por Texto)","SIMILITUDES (BASE SUMINISTRADA)","SIMILITUDES (BASE PROPIA)"]
-    st.sidebar.header("SetenceApp 🧑‍⚖️")
+    st.sidebar.header("SetenceApp 🧑‍⚖️", divider="blue")
     eleccion = st.sidebar.selectbox("MENU PRINCIPAL",menu)
     if eleccion =="INICIO":
         img = Image.open("Captura.PNG")
