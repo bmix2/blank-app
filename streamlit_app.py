@@ -156,9 +156,10 @@ def main():
     if eleccion =="INICIO":
         img = Image.open("Captura.PNG")
         st.image(img,use_column_width="True")
-        st.title("🧑‍⚖️ SentenceApp - Sentencias a tu alcance...")
+        st.title("🧑‍⚖️")
+        st.title("SentenceApp - Sentencias a tu alcance.")
         st.write(
-            " [docs.streamlit.io](https://docs.streamlit.io/)."
+            " <- Nuestro Menú "
         )
 
 
