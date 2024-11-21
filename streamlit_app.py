@@ -154,17 +154,18 @@ def main():
     st.sidebar.header("SetenceApp ⚖️", divider="gray")
     eleccion = st.sidebar.selectbox("MENU PRINCIPAL",menu)
     if eleccion =="INICIO":
-        img = Image.open("Portada2.jpeg")
-        st.image(img,use_column_width="True")
+        
+        #Instrucciones para centrar un elemento usando columnas
+        #col1, col2, col3 = st.columns([1, 1, 1])
+        #with col2:
+            #st.title("⚖️")
 
-        col1, col2, col3 = st.columns([1, 1, 1])
-
-        with col2:
-            st.title("⚖️")
         st.title("SentenceApp - Sentencias a tu alcance.")
         st.write(
             " <- Nuestro Menú "
         )
+        img = Image.open("Portada2.jpeg")
+        st.image(img,use_column_width="True")
 
 
     elif eleccion == "SENTENCIAS(Busqueda por Nombre)":
