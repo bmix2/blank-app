@@ -151,12 +151,12 @@ def main():
 
     
     menu =["INICIO","SENTENCIAS(Busqueda por Nombre)","SENTENCIAS(Busqueda por Tipo)","SENTENCIAS(Busqueda por Año)","SENTENCIAS(Busqueda por Texto)","SIMILITUDES (BASE SUMINISTRADA)","SIMILITUDES (BASE PROPIA)"]
-    st.sidebar.header("SetenceApp"+ "\U0001F9D1"+ "\U000200D"+ "\U002696"+ "\U000FE0F")
+    st.sidebar.header("SetenceApp 🧑‍⚖️")
     eleccion = st.sidebar.selectbox("MENU PRINCIPAL",menu)
     if eleccion =="INICIO":
         img = Image.open("Captura.PNG")
         st.image(img,use_column_width="True")
-        st.title("🎈 My new app")
+        st.title("🧑‍⚖️ SentenceApp - Sentencias a tu alcance...")
         st.write(
             " [docs.streamlit.io](https://docs.streamlit.io/)."
         )
