@@ -187,7 +187,7 @@ def main():
 
 
     st.subheader("SENTENCIAS: Busqueda por texto de providencia")
-    nombre_providencia = st.text_area("Ingrese el texto que desea buscar en la providencia", key = 2, height=400)
+    nombre_providencia = st.text_area("Ingrese el texto que desea buscar en la providencia", key = 2, height=100)
     st.dataframe(
         BusquedaTextoProvidencia(nombre_providencia)
     )
