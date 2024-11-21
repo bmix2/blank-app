@@ -200,14 +200,14 @@ def main():
     st.subheader("SIMILITUDES: Busqueda x Providencia (Base de datos JSON suministrada)")
     nombre_providencia2 = st.text_input("Ingrese nombre de la providencia para mostrar sus similitudes", key = 3)
     st.dataframe(
-        BusquedaSimilitudProvidencia2(nombre_providencia2)
+        BusquedaSimilitudProvidencia(nombre_providencia2)
     )
 
 
     st.subheader("SIMILITUDES: Busqueda x Providencia (Base de datos calculada)")
     nombre_providencia2 = st.text_input("Ingrese nombre de la providencia para mostrar sus similitudes", key = 4)
     st.dataframe(
-        BusquedaSimilitudProvidencia(nombre_providencia2)
+        BusquedaSimilitudProvidencia2(nombre_providencia2)
     )
 
 main()
