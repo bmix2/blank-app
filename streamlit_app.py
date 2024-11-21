@@ -4,7 +4,7 @@ import pymongo
 import pandas as pd
 from pymongo import MongoClient
 import streamlit as st
-st.set_page_config(page_title="Sentencias Automate",)
+st.set_page_config(page_title="Sentencias Automate",initial_sidebar_state="expanded")
 
 
 def ConexionSqlSentenciasDB():
@@ -72,6 +72,23 @@ def BusquedaAnioProvidencia(palabra):
         df = pd.DataFrame()  # DataFrame vacío si no hay resultados 
     return df
 
+def BusquedaTextoProvidencia(palabra):
+    
+    # Conexión al cliente MongoDB
+    client = MongoClient("mongodb+srv://jgonzalezl8:Sephiroth1@bigdata2024.zpsjf.mongodb.net/?retryWrites=true&w=majority&appName=BigData2024")
+    db = client["BigData2023"]
+    coleccion = db["sentencias"]
+    
+    # Consulta a la base de datos
+    resultados = list(coleccion.find({"texto": {"$regex": palabra, "$options": "i"}}))
+    
+    # Convertir a DataFrame
+    if resultados:
+        df = pd.DataFrame(resultados)
+    else:
+        df = pd.DataFrame()  # DataFrame vacío si no hay resultados 
+    return df
+
 def main(): 
 
     #CONSULTANDO LA BASE DE DATOS DE SENTENCIA
@@ -113,6 +130,11 @@ def main():
     )
 
 
+    st.subheader("SENTENCIAS: Busqueda por texto de providencia")
+    nombre_providencia = st.text_input("Ingrese el texto que desea buscar en la providencia", key = 2)
+    st.dataframe(
+        BusquedaTextoProvidencia(nombre_providencia)
+    )
     
     st.subheader("SENTENCIAS: Busqueda dinamica")
     st.dataframe(
