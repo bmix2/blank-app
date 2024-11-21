@@ -104,8 +104,11 @@ def BusquedaSimilitudProvidencia(palabra):
     coleccion = db["Similitudes2"]
     
     # Consulta a la base de datos
-    resultados = list(coleccion.find({"providencia1": {"$regex": palabra, "$options": "i"}} or {"providencia2": {"$regex": palabra, "$options": "i"}}))
-    
+    resultados = list(coleccion.find({"providencia1": {"$regex": palabra, "$options": "i"}}))
+    resultados2 = list(coleccion.find({"providencia2": {"$regex": palabra, "$options": "i"}}))
+    for i in resultados2:
+        resultados.append(i)
+
     # Convertir a DataFrame
     if resultados:
         df = pd.DataFrame(resultados)
