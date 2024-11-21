@@ -173,7 +173,7 @@ def main():
     opcionAnio = st.slider('Seleccione el año de la Sentencia', 
         min_value= 1990,
         max_value =2050,
-        value=2008,
+        value=2009,
         step=1
     )
     st.dataframe(
