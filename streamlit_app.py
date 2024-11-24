@@ -104,10 +104,10 @@ def BusquedaTextoProvidencia(palabra):
     regex_normalizado = f"(?i){palabra_normalizada}"
 
     # Buscar en la colección
-    resultados = list(coleccion.find({"providencia": {"$regex": regex_normalizado}}, {'_id': 0}))
+    #resultados = list(coleccion.find({"providencia": {"$regex": regex_normalizado}}, {'_id': 0}))
     
     # Consulta a la base de datos
-    #resultados = list(coleccion.find({"texto": {"$regex": palabra, "$options": "i"}},{'_id': 0}))
+    resultados = list(coleccion.find({"texto": {"$regex": regex_normalizado, "$options": "i"}},{'_id': 0}))
     
     # Convertir a DataFrame
     if resultados:
