@@ -413,7 +413,7 @@ def main():
            dfConsulted
         )
         st.pyplot(
-            FuncionGraficarv4(dfConsulted)
+            FuncionGraficarV4(dfConsulted)
         )
 
 
