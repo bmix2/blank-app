@@ -38,7 +38,7 @@ def BusquedaProvidencia(palabra):
     coleccion = db["sentencias"]
     
     # Consulta a la base de datos
-    resultados = list(coleccion.find({"providencia": {"$regex": palabra, "$options": "i"}}))
+    resultados = list(coleccion.find({"providencia": {"$regex": palabra, "$options": "i"}},{'_id': 0}))
     
     # Convertir a DataFrame
     if resultados:
@@ -55,7 +55,7 @@ def BusquedaTipoProvidencia(palabra):
     coleccion = db["sentencias"]
     
     # Consulta a la base de datos
-    resultados = list(coleccion.find({"tipo": {"$regex": palabra, "$options": "i"}}))
+    resultados = list(coleccion.find({"tipo": {"$regex": palabra, "$options": "i"}},{'_id': 0}))
     
     # Convertir a DataFrame
     if resultados:
@@ -72,7 +72,7 @@ def BusquedaAnioProvidencia(palabra):
     coleccion = db["sentencias"]
     
     # Consulta a la base de datos
-    resultados = list(coleccion.find({"anio": {"$regex": palabra, "$options": "i"}}))
+    resultados = list(coleccion.find({"anio": {"$regex": palabra, "$options": "i"}},{'_id': 0}))
     
     # Convertir a DataFrame
     if resultados:
@@ -89,7 +89,7 @@ def BusquedaTextoProvidencia(palabra):
     coleccion = db["sentencias"]
     
     # Consulta a la base de datos
-    resultados = list(coleccion.find({"texto": {"$regex": palabra, "$options": "i"}}))
+    resultados = list(coleccion.find({"texto": {"$regex": palabra, "$options": "i"}},{'_id': 0}))
     
     # Convertir a DataFrame
     if resultados:
@@ -106,8 +106,8 @@ def BusquedaSimilitudProvidencia2(palabra):
     coleccion = db["Similitudes2"]
     
     # Consulta a la base de datos
-    resultados = list(coleccion.find({"providencia1": {"$regex": palabra, "$options": "i"}}))
-    resultados2 = list(coleccion.find({"providencia2": {"$regex": palabra, "$options": "i"}}))
+    resultados = list(coleccion.find({"providencia1": {"$regex": palabra, "$options": "i"}},{'_id': 0}))
+    resultados2 = list(coleccion.find({"providencia2": {"$regex": palabra, "$options": "i"}},{'_id': 0}))
     for i in resultados2:
         resultados.append(i)
 
