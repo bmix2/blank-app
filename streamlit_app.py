@@ -126,8 +126,9 @@ def BusquedaSimilitudProvidencia(palabra):
     coleccion = db["Similitudes"]
     
     # Consulta a la base de datos
-    resultados = list(coleccion.find({"providencia1": {"$regex": palabra, "$options": "i"}}))
-    resultados2 = list(coleccion.find({"providencia2": {"$regex": palabra, "$options": "i"}}))
+   
+    resultados = list(coleccion.find({"providencia1": {"$regex": palabra, "$options": "i"}},{'_id': 0}))
+    resultados2 = list(coleccion.find({"providencia2": {"$regex": palabra, "$options": "i"}},{'_id': 0}))
     for i in resultados2:
         resultados.append(i)
 
