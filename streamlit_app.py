@@ -9,12 +9,26 @@ import unicodedata
 st.set_page_config(page_title="Sentencias Automate",initial_sidebar_state="expanded")
 
 
-def normalizar_cadena(cadena):
-    """Normaliza una cadena eliminando tildes y caracteres especiales."""
-    return ''.join(
-        c for c in unicodedata.normalize('NFD', cadena)
-        if unicodedata.category(c) != 'Mn'
-    )
+def generar_regex_tildes(palabra):
+    equivalencias = {
+        "a": "[aá]",
+        "e": "[eé]",
+        "i": "[ií]",
+        "o": "[oó]",
+        "u": "[uúü]",
+        "n": "[nñ]",
+        "A": "[AÁ]",
+        "E": "[EÉ]",
+        "I": "[IÍ]",
+        "O": "[OÓ]",
+        "U": "[UÚÜ]",
+        "N": "[NÑ]"
+    }
+
+    # Reemplazar cada carácter por su equivalencia con y sin tildes
+    regex = ''.join(equivalencias.get(c, c) for c in palabra)
+    return regex
+
 
 def ConexionSqlSentenciasDB():
     client = MongoClient("mongodb+srv://jgonzalezl8:Sephiroth1@bigdata2024.zpsjf.mongodb.net/?retryWrites=true&w=majority&appName=BigData2024")
@@ -97,17 +111,11 @@ def BusquedaTextoProvidencia(palabra):
     db = client["BigData2023"]
     coleccion = db["sentencias"]
 
-    # Normalizar la palabra antes de la búsqueda
-    palabra_normalizada = normalizar_cadena(palabra)
+    # Generar la expresión regular para la palabra
+    regex_palabra = generar_regex_tildes(palabra)
 
-    # Crear el regex con la palabra normalizada
-    regex_normalizado = f"(?i){palabra_normalizada}"
-
-    # Buscar en la colección
-    #resultados = list(coleccion.find({"providencia": {"$regex": regex_normalizado}}, {'_id': 0}))
-    
-    # Consulta a la base de datos
-    resultados = list(coleccion.find({"texto": {"$regex": regex_normalizado, "$options": "i"}},{'_id': 0}))
+    # Consultar en la colección
+    resultados = list(coleccion.find({"providencia": {"$regex": regex_palabra, "$options": "i"}}, {'_id': 0}))
     
     # Convertir a DataFrame
     if resultados:
