@@ -248,7 +248,7 @@ def main():
     #similitudes2 = ConexionSqlSimilitudes2DB() #cargando todos los registros de similitudes
 
     
-    menu =["INICIO","SENTENCIAS(Busqueda por Nombre)","SENTENCIAS(Busqueda por Tipo)","SENTENCIAS(Busqueda por Año)","SENTENCIAS(Busqueda por Texto)","SIMILITUDES (BASE SUMINISTRADA)", "SIMILITUDES GRAFOS"]
+    menu =["INICIO","SENTENCIAS(Busqueda por Nombre)","SENTENCIAS(Busqueda por Tipo)","SENTENCIAS(Busqueda por Año)","SENTENCIAS(Busqueda por Texto)","SIMILITUDES Y NODOS (BASE SUMINISTRADA)"]
     st.sidebar.header("SetenceApp ⚖️", divider="gray")
     eleccion = st.sidebar.selectbox("MENU PRINCIPAL",menu)
     if eleccion =="INICIO":
@@ -307,16 +307,10 @@ def main():
             BusquedaTextoProvidencia(nombre_providencia)
         )
     
-    elif eleccion == "SIMILITUDES (BASE SUMINISTRADA)":
-        st.subheader("SIMILITUDES: Busqueda x Providencia (Base de datos JSON suministrada)")
+    elif eleccion == "SIMILITUDES y NODOS (BASE SUMINISTRADA)":
+        st.subheader("SIMILITUDES: Busqueda x Providencia (Base de datos JSON suministrada) (Visualizacion de Nodos)")
         nombre_providencia2 = st.text_input("Ingrese nombre de la providencia para mostrar sus similitudes", key = 3)
-        st.dataframe(
-            BusquedaSimilitudProvidencia(nombre_providencia2)
-        )
 
-    elif eleccion == "SIMILITUDES GRAFOS":
-        st.subheader("SIMILITUDES: Busqueda x Providencia (Base de datos calculada)")
-        nombre_providencia2 = st.text_input("Ingrese nombre de la providencia para mostrar sus similitudes", key = 4)
         dfConsulted = BusquedaSimilitudProvidencia(nombre_providencia2)
         st.dataframe(
            dfConsulted
@@ -324,7 +318,7 @@ def main():
         st.pyplot(
             FuncionGraficarV5(dfConsulted)
         )
-
+        
 
 main()
  
