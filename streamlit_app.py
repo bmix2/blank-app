@@ -248,7 +248,7 @@ def main():
     #similitudes2 = ConexionSqlSimilitudes2DB() #cargando todos los registros de similitudes
 
     
-    menu =["INICIO","SENTENCIAS(Busqueda por Nombre)","SENTENCIAS(Busqueda por Tipo)","SENTENCIAS(Busqueda por Año)","SENTENCIAS(Busqueda por Texto)","SIMILITUDES Y NODOS (BASE SUMINISTRADA)"]
+    menu =["INICIO","SENTENCIAS(Busqueda por Nombre)","SENTENCIAS(Busqueda por Tipo)","SENTENCIAS(Busqueda por Año)","SENTENCIAS(Busqueda por Texto)","SIMILITUDES y NODOS (BASE SUMINISTRADA)"]
     st.sidebar.header("SetenceApp ⚖️", divider="gray")
     eleccion = st.sidebar.selectbox("MENU PRINCIPAL",menu)
     if eleccion =="INICIO":
