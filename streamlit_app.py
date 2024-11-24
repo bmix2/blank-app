@@ -260,7 +260,7 @@ def FuncionGraficarv3(df):
     else:
         print("El DataFrame está vacío. Por favor, proporcione datos válidos.")
 
-def FuncionGraficarv4(df):
+def FuncionGraficarV4(df):
     import networkx as nx
     import matplotlib.pyplot as plt
     
