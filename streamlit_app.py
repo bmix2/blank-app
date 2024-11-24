@@ -211,6 +211,7 @@ def FuncionGraficarv3(df):
     import networkx as nx
     import matplotlib.pyplot as plt
     
+    
     if not df.empty:
         # Verificar y renombrar columnas
         df.columns = ["providencia1", "providencia2", "similitud"]
