@@ -315,6 +315,9 @@ def main():
         st.dataframe(
            dfConsulted
         )
+        st.subheader(
+            "VISUALIZACION DE NODOS: ", divider="gray"
+        )
         st.pyplot(
             FuncionGraficarV5(dfConsulted)
         )
