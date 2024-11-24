@@ -344,7 +344,7 @@ def main():
     elif eleccion == "SIMILITUDES GRAFOS":
         st.subheader("SIMILITUDES: Busqueda x Providencia (Base de datos calculada)")
         nombre_providencia2 = st.text_input("Ingrese nombre de la providencia para mostrar sus similitudes", key = 4)
-        dfConsulted = BusquedaSimilitudProvidencia2(nombre_providencia2)
+        dfConsulted = BusquedaSimilitudProvidencia(nombre_providencia2)
         st.dataframe(
            dfConsulted
         )
