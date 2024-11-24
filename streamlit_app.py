@@ -325,6 +325,74 @@ def FuncionGraficarV4(df):
     else:
         print("El DataFrame está vacío. Por favor, proporcione datos válidos.")
 
+def FuncionGraficarV5(df):
+    import networkx as nx
+    import matplotlib.pyplot as plt
+    
+    if not df.empty:
+        # Verificar y renombrar columnas
+        df.columns = ["providencia1", "providencia2", "similitud"]
+        
+        # Crear un grafo vacío
+        G = nx.Graph()
+        
+        # Agregar aristas con pesos
+        for index, row in df.iterrows():
+            origen = row["providencia1"]
+            destino = row["providencia2"]
+            similitud = row["similitud"]
+            
+            # Agregar relación si la similitud es mayor a 0.5
+            if similitud > 0.5:
+                G.add_edge(origen, destino, weight=similitud)
+        
+        # Manejar el caso de un solo registro
+        if len(df) == 1:
+            origen = df.iloc[0]["providencia1"]
+            destino = df.iloc[0]["providencia2"]
+            # Asegurar que ambos nodos existan
+            G.add_node(origen)
+            G.add_node(destino)
+        
+        # Obtener posiciones de los nodos
+        pos = nx.spring_layout(G)
+        
+        # Extraer pesos de las aristas
+        edges = G.edges(data=True)
+        weights = [d['weight'] for (u, v, d) in edges]
+        
+        # Normalizar pesos para controlar grosor
+        if weights:
+            min_weight = min(weights)
+            max_weight = max(weights)
+            normalized_weights = [(w - min_weight) / (max_weight - min_weight) * 2 + 0.5 for w in weights]  # Rango 0.5-2.5
+        else:
+            normalized_weights = []
+        
+        # Configurar visualización en pantalla completa
+        plt.figure(figsize=(16, 9))  # Tamaño personalizado para ocupar la pantalla completa
+        plt.subplots_adjust(left=0, right=1, top=1, bottom=0)  # Quitar márgenes
+        
+        # Dibujar nodos
+        nx.draw_networkx_nodes(G, pos, node_size=700, node_color='lightblue')
+        
+        # Dibujar aristas con grosor ajustado
+        nx.draw_networkx_edges(G, pos, width=normalized_weights, edge_color='gray')
+        
+        # Dibujar etiquetas de nodos
+        nx.draw_networkx_labels(G, pos, font_size=12, font_color='black', font_weight='bold')
+        
+        # Dibujar etiquetas de aristas (pesos)
+        edge_labels = nx.get_edge_attributes(G, 'weight')
+        nx.draw_networkx_edge_labels(G, pos, edge_labels={(u, v): f"{d:.2f}" for (u, v), d in edge_labels.items()})
+        
+        # Mostrar el grafo
+        plt.title("Grafo de Similitudes", fontsize=16)
+        plt.axis('off')  # Ocultar ejes
+        plt.show()
+    else:
+        print("El DataFrame está vacío. Por favor, proporcione datos válidos.")
+
 
 
 
@@ -414,7 +482,7 @@ def main():
            dfConsulted
         )
         st.pyplot(
-            FuncionGraficarV4(dfConsulted)
+            FuncionGraficarV5(dfConsulted)
         )
 
 
