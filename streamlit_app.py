@@ -150,7 +150,7 @@ def main():
     #similitudes2 = ConexionSqlSimilitudes2DB() #cargando todos los registros de similitudes
 
     
-    menu =["INICIO","SENTENCIAS(Busqueda por Nombre)","SENTENCIAS(Busqueda por Tipo)","SENTENCIAS(Busqueda por Año)","SENTENCIAS(Busqueda por Texto)","SIMILITUDES (BASE SUMINISTRADA)","SIMILITUDES (BASE PROPIA)"]
+    menu =["INICIO","SENTENCIAS(Busqueda por Nombre)","SENTENCIAS(Busqueda por Tipo)","SENTENCIAS(Busqueda por Año)","SENTENCIAS(Busqueda por Texto)","SIMILITUDES (BASE SUMINISTRADA)"]
     st.sidebar.header("SetenceApp ⚖️", divider="gray")
     eleccion = st.sidebar.selectbox("MENU PRINCIPAL",menu)
     if eleccion =="INICIO":
@@ -216,12 +216,12 @@ def main():
             BusquedaSimilitudProvidencia(nombre_providencia2)
         )
 
-    elif eleccion == "SIMILITUDES (BASE PROPIA)":
-        st.subheader("SIMILITUDES: Busqueda x Providencia (Base de datos calculada)")
-        nombre_providencia2 = st.text_input("Ingrese nombre de la providencia para mostrar sus similitudes", key = 4)
-        st.dataframe(
-            BusquedaSimilitudProvidencia2(nombre_providencia2)
-        )
+    #elif eleccion == "SIMILITUDES (BASE PROPIA)":
+    #    st.subheader("SIMILITUDES: Busqueda x Providencia (Base de datos calculada)")
+    #    nombre_providencia2 = st.text_input("Ingrese nombre de la providencia para mostrar sus similitudes", key = 4)
+    #    st.dataframe(
+    #        BusquedaSimilitudProvidencia2(nombre_providencia2)
+    #    )
 
 main()
  
