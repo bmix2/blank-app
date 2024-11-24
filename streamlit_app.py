@@ -115,7 +115,7 @@ def BusquedaTextoProvidencia(palabra):
     regex_palabra = generar_regex_tildes(palabra)
 
     # Consultar en la colección
-    resultados = list(coleccion.find({"providencia": {"$regex": regex_palabra, "$options": "i"}}, {'_id': 0}))
+    resultados = list(coleccion.find({"texto": {"$regex": regex_palabra, "$options": "i"}}, {'_id': 0}))
     
     # Convertir a DataFrame
     if resultados:
