@@ -173,6 +173,9 @@ def FuncionGraficarV5(df):
         # Verificar y renombrar columnas
         df.columns = ["providencia1", "providencia2", "similitud"]
         
+        # Eliminar duplicados
+        df = df.drop_duplicates(subset=["providencia1", "providencia2", "similitud"])
+    
         # Crear un grafo vacío
         G = nx.Graph()
         
