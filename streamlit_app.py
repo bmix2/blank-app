@@ -316,7 +316,7 @@ def main():
 
         st.subheader("Umbral Minimo para la busqueda: ")
         simPick = st.slider('Seleccione el umbral inferior para generar los nodos', 
-            min_value= 0.01,
+            min_value= 0.1,
             max_value = 1,
             value=0.05,
             step=0.01
