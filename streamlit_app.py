@@ -124,16 +124,16 @@ def BusquedaTextoProvidencia(palabra):
         df = pd.DataFrame()  # DataFrame vacío si no hay resultados 
     return df
 
-def BusquedaSimilitudProvidencia2(palabra):
+def BusquedaSimilitudProvidenciaUmbral(palabra, umbral):
     
     # Conexión al cliente MongoDB
     client = MongoClient("mongodb+srv://jgonzalezl8:Sephiroth1@bigdata2024.zpsjf.mongodb.net/?retryWrites=true&w=majority&appName=BigData2024")
     db = client["BigData2023"]
-    coleccion = db["Similitudes2"]
+    coleccion = db["Similitudes"]
     
     # Consulta a la base de datos
-    resultados = list(coleccion.find({"providencia1": {"$regex": palabra, "$options": "i"}},{'_id': 0}))
-    resultados2 = list(coleccion.find({"providencia2": {"$regex": palabra, "$options": "i"}},{'_id': 0}))
+    resultados =  list(coleccion.find({"providencia1": {"$regex": palabra, "$options": "i"}, "similitud": umbral},{'_id': 0}))
+    resultados2 = list(coleccion.find({"providencia1": {"$regex": palabra, "$options": "i"}, "similitud": umbral},{'_id': 0}))
     for i in resultados2:
         resultados.append(i)
 
@@ -165,7 +165,7 @@ def BusquedaSimilitudProvidencia(palabra):
         df = pd.DataFrame()  # DataFrame vacío si no hay resultados 
     return df
 
-def FuncionGraficarV5(df):
+def FuncionGraficarV5(df,umbral):
     import networkx as nx
     import matplotlib.pyplot as plt
     
@@ -182,9 +182,11 @@ def FuncionGraficarV5(df):
             destino = row["providencia2"]
             similitud = row["similitud"]
             
-            # Agregar relación si la similitud es mayor a 0.5
-            if similitud > 0.5:
+            # Agregar relación si la similitud es mayor al umbral dado
+            if similitud > umbral:
                 G.add_edge(origen, destino, weight=similitud)
+
+
         
         # Manejar el caso de un solo registro
         if len(df) == 1:
@@ -308,10 +310,20 @@ def main():
         )
     
     elif eleccion == "SIMILITUDES y NODOS (BASE SUMINISTRADA)":
+
         st.subheader("SIMILITUDES: Busqueda x Providencia (Base de datos JSON suministrada) (Visualizacion de Nodos)")
         nombre_providencia2 = st.text_input("Ingrese nombre de la providencia para mostrar sus similitudes", key = 3)
 
-        dfConsulted = BusquedaSimilitudProvidencia(nombre_providencia2)
+        st.subheader("Umbral Minimo para la busqueda: ")
+        simPick = st.slider('Seleccione el umbral inferior para generar los nodos', 
+            min_value= 0.5,
+            max_value = 100,
+            value=0.5,
+            step=0.5
+        )
+
+        dfConsulted = BusquedaSimilitudProvidenciaUmbral(nombre_providencia2)
+
         st.dataframe(
            dfConsulted
         )
@@ -319,7 +331,7 @@ def main():
             "VISUALIZACION DE NODOS: ", divider="gray"
         )
         st.pyplot(
-            FuncionGraficarV5(dfConsulted)
+            FuncionGraficarV5(dfConsulted,simPick)
         )
         
 
