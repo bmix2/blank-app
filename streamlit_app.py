@@ -199,7 +199,7 @@ def FuncionGraficarV5(df):
                 destino = row["providencia2"]
                 similitud = row["similitud"]
 
-            # Agregar relación si la similitud es mayor al umbral dado
+            # Agregar relación si la similitud es mayor a 0.5
             if similitud > 0.5:
                 G.add_edge(origen, destino, weight=similitud)
 
