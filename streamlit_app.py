@@ -192,7 +192,7 @@ def FuncionGraficarV5(df):
             # Asegurar que ambos nodos existan
             G.add_edge(origen, destino, weight=similitud)
 
-        elif len(df>=1):
+        elif len(df) >= 1:
              # Agregar aristas con pesos
             for index, row in df.iterrows():
                 origen = row["providencia1"]
