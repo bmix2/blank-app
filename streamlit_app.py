@@ -322,7 +322,7 @@ def main():
             step=0.01
         )
 
-        dfConsulted = BusquedaSimilitudProvidenciaUmbral(nombre_providencia2,simPick)
+        dfConsulted = BusquedaSimilitudProvidencia(nombre_providencia2)
 
         st.dataframe(
            dfConsulted
