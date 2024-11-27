@@ -190,7 +190,9 @@ def FuncionGraficarV5(df):
             destino = df.iloc[0]["providencia2"]
             similitud = df.iloc[0]["similitud"]
             # Asegurar que ambos nodos existan
-            G.add_edge(origen, destino, weight=similitud)
+            G.add_node(origen)
+            G.add_node(destino) 
+            
 
         elif len(df) >= 1:
              # Agregar aristas con pesos
