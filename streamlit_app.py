@@ -165,7 +165,7 @@ def BusquedaSimilitudProvidencia(palabra):
         df = pd.DataFrame()  # DataFrame vacío si no hay resultados 
     return df
 
-def FuncionGraficarV5(df,umbral):
+def FuncionGraficarV5(df):
     import networkx as nx
     import matplotlib.pyplot as plt
     
@@ -183,7 +183,7 @@ def FuncionGraficarV5(df,umbral):
             similitud = row["similitud"]
             
             # Agregar relación si la similitud es mayor al umbral dado
-            if similitud > umbral:
+            if similitud > 0.5:
                 G.add_edge(origen, destino, weight=similitud)
 
 
@@ -331,7 +331,7 @@ def main():
             "VISUALIZACION DE NODOS: ", divider="gray"
         )
         st.pyplot(
-            FuncionGraficarV5(dfConsulted,simPick)
+            FuncionGraficarV5(dfConsulted)
         )
         
 
