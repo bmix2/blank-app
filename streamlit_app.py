@@ -233,7 +233,7 @@ def FuncionGraficarV6(df):
         nx.draw_networkx_nodes(G, pos, node_size=700, node_color='lightblue')
 
         # Dibujar aristas con grosor ajustado
-        nx.draw_networkx_edges(G, pos, width=normalized_weights, edge_color='gray')
+        nx.draw_networkx_edges(G, pos, width=normalized_weights, edge_color='red')
 
         # Dibujar etiquetas de nodos
         nx.draw_networkx_labels(G, pos, font_size=12, font_color='black', font_weight='bold')
