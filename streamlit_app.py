@@ -132,8 +132,8 @@ def BusquedaSimilitudProvidenciaUmbral(palabra, umbral):
     coleccion = db["Similitudes"]
     
     # Consulta a la base de datos
-    resultados =  list(coleccion.find({"providencia1": {"$regex": palabra, "$options": "i"}, "similitud": {"$gt": umbral}},{'_id': 0}))
-    resultados2 = list(coleccion.find({"providencia1": {"$regex": palabra, "$options": "i"}, "similitud": {"$gt": umbral}},{'_id': 0}))
+    resultados =  list(coleccion.find({"providencia1": {"$regex": palabra, "$options": "i"}, "index_simm": {"$gt": umbral}},{'_id': 0}))
+    resultados2 = list(coleccion.find({"providencia1": {"$regex": palabra, "$options": "i"}, "index_simm": {"$gt": umbral}},{'_id': 0}))
     for i in resultados2:
         resultados.append(i)
 
@@ -317,8 +317,8 @@ def main():
         st.subheader("Umbral Minimo para la busqueda: ")
         simPick = st.slider('Seleccione el umbral inferior para generar los nodos', 
             min_value= 0.1,
-            max_value = 1.0,
-            value=0.05,
+            max_value = 100.0,
+            value=0.5,
             step=0.01
         )
 
