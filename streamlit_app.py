@@ -172,22 +172,15 @@ def FuncionGraficarV5(df):
     if not df.empty:
         # Verificar y renombrar columnas
         df.columns = ["providencia1", "providencia2", "similitud"]
-        
+
         # Eliminar duplicados
         df = df.drop_duplicates(subset=["providencia1", "providencia2", "similitud"])
     
         # Crear un grafo vacío
         G = nx.Graph()
         
-        # Agregar aristas con pesos
-        for index, row in df.iterrows():
-            origen = row["providencia1"]
-            destino = row["providencia2"]
-            similitud = row["similitud"]
-            
-            # Agregar relación si la similitud es mayor al umbral dado
-            if similitud > 0.5:
-                G.add_edge(origen, destino, weight=similitud)
+        
+       
 
 
         
@@ -195,10 +188,24 @@ def FuncionGraficarV5(df):
         if len(df) == 1:
             origen = df.iloc[0]["providencia1"]
             destino = df.iloc[0]["providencia2"]
+            similitud = df.iloc[0]["similitud"]
             # Asegurar que ambos nodos existan
-            G.add_node(origen)
-            G.add_node(destino)
-        
+            G.add_edge(origen, destino, weight=similitud)
+
+        elif len(df>=1):
+             # Agregar aristas con pesos
+            for index, row in df.iterrows():
+                origen = row["providencia1"]
+                destino = row["providencia2"]
+                similitud = row["similitud"]
+
+            # Agregar relación si la similitud es mayor al umbral dado
+            if similitud > 0.5:
+                G.add_edge(origen, destino, weight=similitud)
+
+
+
+
         # Obtener posiciones de los nodos
         pos = nx.spring_layout(G)
         
