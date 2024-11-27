@@ -223,7 +223,7 @@ def FuncionGraficarV6(df):
             max_weight = max(weights)
             normalized_weights = [(w - min_weight) / (max_weight - min_weight) * 2 + 0.5 for w in weights]
         else:
-            normalized_weights = [1] * 500  # Asignar un grosor por defecto
+            normalized_weights = 5  # Asignar un grosor por defecto
 
         # Configurar visualización en pantalla completa
         plt.figure(figsize=(16, 9))  # Tamaño personalizado para ocupar la pantalla completa
