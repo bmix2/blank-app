@@ -132,8 +132,8 @@ def BusquedaSimilitudProvidenciaUmbral(palabra, umbral):
     coleccion = db["Similitudes"]
     
     # Consulta a la base de datos
-    resultados =  list(coleccion.find({"providencia1": {"$regex": palabra, "$options": "i"}, "similitud": umbral},{'_id': 0}))
-    resultados2 = list(coleccion.find({"providencia1": {"$regex": palabra, "$options": "i"}, "similitud": umbral},{'_id': 0}))
+    resultados =  list(coleccion.find({"providencia1": {"$regex": palabra, "$options": "i"}, "similitud": {"$gt": umbral}},{'_id': 0}))
+    resultados2 = list(coleccion.find({"providencia1": {"$regex": palabra, "$options": "i"}, "similitud": {"$gt": umbral}},{'_id': 0}))
     for i in resultados2:
         resultados.append(i)
 
