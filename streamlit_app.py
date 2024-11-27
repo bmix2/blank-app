@@ -187,11 +187,12 @@ def FuncionGraficarV6(df):
             destino = df.iloc[0]["providencia2"]
             similitud = df.iloc[0]["similitud"]
 
-            # Agregar nodos y una arista si la similitud es mayor a 0.5
+            # Agregar nodos
             G.add_node(origen)
             G.add_node(destino)
-            if similitud > 0.5:
-                G.add_edge(origen, destino, weight=similitud)
+
+            # Agregar siempre la arista entre los dos nodos
+            G.add_edge(origen, destino, weight=similitud)
 
         # Manejar el caso de múltiples registros
         elif len(df) > 1:
@@ -222,7 +223,7 @@ def FuncionGraficarV6(df):
             max_weight = max(weights)
             normalized_weights = [(w - min_weight) / (max_weight - min_weight) * 2 + 0.5 for w in weights]
         else:
-            normalized_weights = []
+            normalized_weights = [1] * len(edges)  # Asignar un grosor por defecto
 
         # Configurar visualización en pantalla completa
         plt.figure(figsize=(16, 9))  # Tamaño personalizado para ocupar la pantalla completa
@@ -247,6 +248,8 @@ def FuncionGraficarV6(df):
         plt.show()
     else:
         print("El DataFrame está vacío. Por favor, proporcione datos válidos.")
+
+
 
 
 def FuncionGraficarV5(df):
