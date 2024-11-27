@@ -316,10 +316,10 @@ def main():
 
         st.subheader("Umbral Minimo para la busqueda: ")
         simPick = st.slider('Seleccione el umbral inferior para generar los nodos', 
-            min_value= .5,
+            min_value= 1,
             max_value = 100,
-            value=.5,
-            step=.5
+            value=1,
+            step=1
         )
 
         dfConsulted = BusquedaSimilitudProvidenciaUmbral(nombre_providencia2,simPick)
