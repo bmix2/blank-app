@@ -1,12 +1,13 @@
 
 import pip
-st.set_page_config(page_title="Sentencias Automate",initial_sidebar_state="expanded")
 import pymongo
 import pandas as pd
 from PIL import Image
 from pymongo import MongoClient
 import streamlit as st
 import unicodedata
+
+st.set_page_config(page_title="Sentencias Automate",initial_sidebar_state="expanded")
 
 def generar_regex_tildes(palabra):
     equivalencias = {
@@ -238,6 +239,7 @@ def FuncionGraficarV6(df):
         plt.show()
     else:
         print("El DataFrame está vacío. Por favor, proporcione datos válidos.")
+
 
 
 def main(): 
